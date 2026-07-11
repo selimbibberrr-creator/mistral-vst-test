@@ -29,6 +29,9 @@ public:
     void getStateInformation(juce::MemoryBlock& destData) override;
     void setStateInformation(const void* data, int sizeInBytes) override;
 
+    // Access to audio engine for UI
+    AudioEngine& getAudioEngine() { return *audioEngine; }
+
 private:
     std::unique_ptr<AudioEngine> audioEngine;
     double currentSampleRate = 44100.0;

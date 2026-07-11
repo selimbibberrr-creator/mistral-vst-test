@@ -7,6 +7,7 @@
 #include "Oscillators/Sampler.h"
 #include "Oscillators/SubGenerator.h"
 #include "Envelopes/ADSR.h"
+#include "Mixer/Mixer.h"
 #include "Filters/FilterBank.h"
 #include "Distortion/DistortionUnit.h"
 #include "Effects/Compressor.h"
@@ -15,6 +16,7 @@
 #include "Effects/Delay.h"
 #include "Effects/StereoImager.h"
 #include "Routing/RoutingMatrix.h"
+#include "Presets/PresetManager.h"
 
 class AudioEngine
 {
@@ -40,6 +42,7 @@ public:
     NoiseRumble& getNoiseRumble() { return noiseRumble; }
     Sampler& getSampler() { return sampler; }
     SubGenerator& getSubGenerator() { return subGenerator; }
+    Mixer& getMixer() { return mixer; }
     FilterBank& getFilterBank() { return filterBank; }
     DistortionUnit& getDistortionUnit() { return distortionUnit; }
     Compressor& getCompressor() { return compressor; }
@@ -48,6 +51,14 @@ public:
     Delay& getDelay() { return delay; }
     StereoImager& getStereoImager() { return stereoImager; }
     RoutingMatrix& getRoutingMatrix() { return routingMatrix; }
+    PresetManager& getPresetManager() { return presetManager; }
+
+    // ADSR envelopes access
+    ADSR& getADSR_Osc1() { return adsrOsc1; }
+    ADSR& getADSR_Osc2() { return adsrOsc2; }
+    ADSR& getADSR_Noise() { return adsrNoise; }
+    ADSR& getADSR_Sampler() { return adsrSampler; }
+    ADSR& getADSR_Sub() { return adsrSub; }
 
 private:
     // Sample rate and block size
@@ -68,6 +79,9 @@ private:
     ADSR adsrSampler;
     ADSR adsrSub;
 
+    // Mixer
+    Mixer mixer;
+
     // Processing modules
     FilterBank filterBank;
     DistortionUnit distortionUnit;
@@ -78,10 +92,12 @@ private:
     StereoImager stereoImager;
     RoutingMatrix routingMatrix;
 
+    // Preset manager
+    PresetManager presetManager;
+
     // Temporary buffers for processing
-    juce::AudioBuffer<float> tempBuffer;
-    juce::AudioBuffer<float> mixerBuffer;
     juce::AudioBuffer<float> sourceBuffers[5]; // Individual source buffers
+    juce::AudioBuffer<float> mainBuffer;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AudioEngine)
 };

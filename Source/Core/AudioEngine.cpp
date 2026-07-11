@@ -2,6 +2,8 @@
 
 AudioEngine::AudioEngine()
 {
+    // Initialize preset manager with this engine
+    presetManager.initialize(this);
 }
 
 AudioEngine::~AudioEngine()
@@ -26,6 +28,7 @@ void AudioEngine::prepareToPlay(double newSampleRate, int newBlockSize)
     adsrSampler.prepareToPlay(sampleRate, blockSize);
     adsrSub.prepareToPlay(sampleRate, blockSize);
 
+    mixer.prepareToPlay(sampleRate, blockSize);
     filterBank.prepareToPlay(sampleRate, blockSize);
     distortionUnit.prepareToPlay(sampleRate, blockSize);
     compressor.prepareToPlay(sampleRate, blockSize);
@@ -36,8 +39,7 @@ void AudioEngine::prepareToPlay(double newSampleRate, int newBlockSize)
     routingMatrix.prepareToPlay(sampleRate, blockSize);
 
     // Initialize temporary buffers
-    tempBuffer.setSize(2, blockSize);
-    mixerBuffer.setSize(2, blockSize);
+    mainBuffer.setSize(2, blockSize);
     
     for (int i = 0; i < 5; ++i)
     {
@@ -53,6 +55,7 @@ void AudioEngine::releaseResources()
     sampler.releaseResources();
     subGenerator.releaseResources();
 
+    mixer.releaseResources();
     filterBank.releaseResources();
     distortionUnit.releaseResources();
     compressor.releaseResources();
@@ -75,48 +78,41 @@ void AudioEngine::processBlock(juce::AudioBuffer<float>& buffer)
     sampler.processBlock(sourceBuffers[3], adsrSampler);
     subGenerator.processBlock(sourceBuffers[4], adsrSub);
 
-    // Mix all sources (simplified - will be replaced by proper mixer)
-    mixerBuffer.clear();
-    for (int i = 0; i < 5; ++i)
-    {
-        for (int channel = 0; channel < 2; ++channel)
-        {
-            auto* sourceData = sourceBuffers[i].getReadPointer(channel);
-            auto* mixData = mixerBuffer.getWritePointer(channel);
-            
-            for (int sample = 0; sample < blockSize; ++sample)
-            {
-                mixData[sample] += sourceData[sample] * 0.2f; // Scale down for safety
-            }
-        }
-    }
+    // Mix all sources
+    mixer.processBlock(mainBuffer, 
+                       sourceBuffers[0], 
+                       sourceBuffers[1], 
+                       sourceBuffers[2], 
+                       sourceBuffers[3], 
+                       sourceBuffers[4]);
 
-    // Apply processing chain: Mixer -> FilterBank -> Distortion -> Effects
-    // For now, just pass through the mixer buffer
+    // Apply processing chain based on routing matrix
+    // For now, use the default signal flow:
+    // Mixer -> FilterBank -> Distortion -> Compressor -> EQ -> Reverb -> Delay -> StereoImager
     
     // Apply filter bank
-    filterBank.processBlock(mixerBuffer);
+    filterBank.processBlock(mainBuffer);
     
     // Apply distortion
-    distortionUnit.processBlock(mixerBuffer);
+    distortionUnit.processBlock(mainBuffer);
     
     // Apply compressor
-    compressor.processBlock(mixerBuffer);
+    compressor.processBlock(mainBuffer);
     
     // Apply EQ
-    parametricEQ.processBlock(mixerBuffer);
+    parametricEQ.processBlock(mainBuffer);
     
     // Apply reverb
-    reverb.processBlock(mixerBuffer);
+    reverb.processBlock(mainBuffer);
     
     // Apply delay
-    delay.processBlock(mixerBuffer);
+    delay.processBlock(mainBuffer);
     
     // Apply stereo imager
-    stereoImager.processBlock(mixerBuffer);
+    stereoImager.processBlock(mainBuffer);
     
     // Copy to output
-    buffer.makeCopyOf(mixerBuffer);
+    buffer.makeCopyOf(mainBuffer);
 }
 
 void AudioEngine::processMidiMessage(const juce::MidiMessage& message)
@@ -182,6 +178,9 @@ void AudioEngine::saveState(juce::ValueTree& state)
     auto subState = state.getOrCreateChildWithName("SubGenerator", nullptr);
     subGenerator.saveState(subState);
 
+    auto mixerState = state.getOrCreateChildWithName("Mixer", nullptr);
+    mixer.saveState(mixerState);
+
     auto filterState = state.getOrCreateChildWithName("FilterBank", nullptr);
     filterBank.saveState(filterState);
 
@@ -221,6 +220,10 @@ void AudioEngine::saveState(juce::ValueTree& state)
 
     auto adsrSubState = state.getOrCreateChildWithName("ADSR_Sub", nullptr);
     adsrSub.saveState(adsrSubState);
+
+    // Save preset manager state
+    auto presetState = state.getOrCreateChildWithName("PresetManager", nullptr);
+    presetManager.saveState(presetState);
 }
 
 void AudioEngine::loadState(const juce::ValueTree& state)
@@ -240,6 +243,9 @@ void AudioEngine::loadState(const juce::ValueTree& state)
 
     if (auto subState = state.getChildWithName("SubGenerator"))
         subGenerator.loadState(*subState);
+
+    if (auto mixerState = state.getChildWithName("Mixer"))
+        mixer.loadState(*mixerState);
 
     if (auto filterState = state.getChildWithName("FilterBank"))
         filterBank.loadState(*filterState);
@@ -280,4 +286,8 @@ void AudioEngine::loadState(const juce::ValueTree& state)
 
     if (auto adsrSubState = state.getChildWithName("ADSR_Sub"))
         adsrSub.loadState(*adsrSubState);
+
+    // Load preset manager state
+    if (auto presetState = state.getChildWithName("PresetManager"))
+        presetManager.loadState(*presetState);
 }

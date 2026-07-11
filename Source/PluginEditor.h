@@ -2,6 +2,7 @@
 
 #include <JuceHeader.h>
 #include "PluginProcessor.h"
+#include "UI/MainWindow.h"
 
 class HardeKickSynthAudioProcessorEditor : public juce::AudioProcessorEditor
 {
@@ -14,6 +15,7 @@ public:
 
 private:
     HardeKickSynthAudioProcessor& audioProcessor;
+    MainWindow mainWindow;
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(HardeKickSynthAudioProcessorEditor)
 };
