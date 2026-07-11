@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<JUCERPROJECT fileVersion="6.1.5" projectType="AudioPlugIn" 
+              name="HardeKickSynth" pluginFormat_VST3="1" pluginFormat_AU="1" 
+              pluginFormat_AUv3="1" pluginFormat_AAX="1" pluginFormat_LV2="0" 
+              pluginFormat_Unity="0" pluginFormat_WebAudio="0" 
+              pluginFormat_VST="0" pluginFormat_LADSPA="0" 
+              pluginIsSynth="1" pluginWantsMidiIn="1" pluginWantsMidiOut="0" 
+              pluginIsMidiEffect="0" pluginEditorRequiresKeys="0" 
+              pluginFormat_VST3SDKVersion="3.7.10" 
+              pluginFormat_AUMainType="aumu" pluginFormat_AUSubType="aumx" 
+              pluginFormat_AUManufacturerCode="Selm" 
+              pluginFormat_VST3ManufacturerCode="Selim" 
+              pluginFormat_VST3PluginCode="HrdK" 
+              pluginFormat_AAXManufacturerID="Selim" pluginFormat_AAXPluginID="HrdK"
+              pluginFormat_AAXCategory="AAX_ePlugInCategory_Synth" 
+              pluginFormat_WebAudioCategory="" 
+              pluginNeedsConstantBufferSize="0" pluginNeedsPrePreparedBuffer="0"
+              pluginChannelConfigurations="Stereo;Mono" 
+              pluginSilentBypass="0" pluginLatency="0" 
+              pluginTailLength="0" pluginVST3SampleAccurateProcessing="1"
+              pluginVST3SilentBypass="0" pluginVST3SideChain="0" 
+              pluginAAXSideChain="0" pluginAAXNoStateChunk="0" 
+              pluginAUInputChannels="0" pluginAUOutputChannels="2" 
+              pluginAURTAudio="0" pluginAUMusic="1" pluginAUSoundFX="0" 
+              pluginAUMix="0" pluginAUOutput="0" pluginAUPing="0" 
+              pluginAUOther="0" pluginAURestart="0" pluginAUBypass="0" 
+              pluginFormat_LV2URI="" pluginFormat_LV2Bundle="" 
+              pluginFormat_LV2Library="" pluginFormat_UnityPluginName="" 
+              pluginFormat_UnityHasEditor="0" pluginFormat_UnityNeedsAudioThread="0"
+              pluginFormat_WebAudioProductName="" pluginFormat_WebAudioDescription=""
+              pluginFormat_WebAudioIcon="" pluginFormat_WebAudioScreenshots="" 
+              pluginFormat_WebAudioIsInstrument="0" pluginFormat_WebAudioMaxInputs="2"
+              pluginFormat_WebAudioMaxOutputs="2" pluginFormat_WebAudioSilentBypass="0"
+              pluginFormat_WebAudioNeedsMidi="0" pluginFormat_WebAudioNeedsUI="0"
+              pluginFormat_WebAudioBypassesAudio="0" pluginFormat_WebAudioBypassesMidi="0"
+              pluginFormat_WebAudioPreservesMidiChannel="0" 
+              pluginFormat_WebAudioAllowsAutomation="0" 
+              pluginFormat_WebAudioHasTail="0" pluginFormat_WebAudioLatency="0"
+              pluginFormat_WebAudioRealtime="0" pluginFormat_WebAudioDiscreteIO="0"
+              pluginFormat_WebAudioHardwareAcceleration="0" 
+              pluginFormat_WebAudioAudioWorklet="0" pluginFormat_WebAudioMidiWorklet="0"
+              pluginFormat_WebAudioMessageWorklet="0" pluginFormat_WebAudioPolyphony="0"
+              pluginFormat_WebAudioMaxVoices="0" pluginFormat_WebAudioSharedMemory="0"
+              pluginFormat_WebAudioNeedsGestures="0" pluginFormat_WebAudioNeedsKeyboard="0"
+              pluginFormat_WebAudioNeedsScreenOrientation="0" 
+              pluginFormat_WebAudioNeedsFullscreen="0" pluginFormat_WebAudioNeedsPointerLock="0"
+              pluginFormat_WebAudioNeedsGamepad="0" pluginFormat_WebAudioNeedsXR="0"
+              pluginFormat_WebAudioNeedsStorageAccess="0" 
+              pluginFormat_WebAudioNeedsClipboardRead="0" 
+              pluginFormat_WebAudioNeedsClipboardWrite="0" 
+              pluginFormat_WebAudioNeedsCamera="0" pluginFormat_WebAudioNeedsMicrophone="0"
+              pluginFormat_WebAudioNeedsMidiAccess="0" pluginFormat_WebAudioNeedsUSB="0"
+              pluginFormat_WebAudioNeedsBluetooth="0" pluginFormat_WebAudioNeedsSerial="0"
+              pluginFormat_WebAudioNeedsEthernet="0" pluginFormat_WebAudioNeedsWifi="0"
+              pluginFormat_WebAudioNeedsCellular="0" pluginFormat_WebAudioNeedsNFC="0"
+              pluginFormat_WebAudioNeedsGeolocation="0" 
+              pluginCompanyName="Selim" pluginCompanyWebsite="https://github.com/selimbibberrr-creator"
+              pluginCompanyEmail="selim.bibberrr@gmail.com" 
+              pluginDescription="Harde Kick Synth - Extreme kick drum synthesizer for Hardcore, Hardtechno & Hardstyle" 
+              pluginVersion="1.0.0" pluginCopyright="Copyright (c) 2026 Selim" 
+              pluginLicense="GPL-3.0" pluginManualURL="https://github.com/selimbibberrr-creator/mistral-vst-test/blob/main/DOCS/USAGE.md"
+              pluginSupportURL="https://github.com/selimbibberrr-creator/mistral-vst-test/issues" 
+              pluginSourceCodeURL="https://github.com/selimbibberrr-creator/mistral-vst-test" 
+              pluginSeeAlsoURL="" pluginDocumentationURL="" 
+              pluginCompanyCopyright="Copyright (c) 2026 Selim" 
+              pluginCompanyInternalVersion="1" pluginCompanyVersionString="1.0.0"
+              pluginBundlesID="com.selim.HardeKickSynth" pluginBundleVersion="1.0.0"
+              pluginIOSAppID="" pluginIOSAppStoreID="" pluginIOSInAppPurchases="0" 
+              pluginIOSPrivacyPolicyURL="" pluginIOSRequiresWifi="0" 
+              pluginIOSRequiresCellular="0" pluginIOSRequiresBluetoothLE="0" 
+              pluginIOSRequiresGameKit="0" pluginIOSRequiresMetal="0" 
+              pluginIOSRequiresARKit="0" pluginIOSRequiresCoreML="0" 
+              pluginIOSRequiresCoreMotion="0" pluginIOSRequiresPhotoLibrary="0" 
+              pluginIOSRequiresCamera="0" pluginIOSRequiresMicrophone="0" 
+              pluginIOSRequiresLocationServices="0" pluginIOSRequiresHealthKit="0"
+              pluginIOSRequiresHomeKit="0" pluginIOSRequiresAppleMusic="0" 
+              pluginIOSRequiresSiri="0" pluginIOSRequiresFiles="0" 
+              pluginIOSRequiresAudiobus="0" pluginIOSAudiobusID="" 
+              pluginIOSInterAppAudio="0" pluginIOSAVAudioEngine="0" 
+              pluginIOSAVAudioPlayer="0" pluginIOSAVAudioUnit="0" 
+              pluginIOSAudioUnitType="" pluginIOSAudioUnitSubType="" 
+              pluginIOSAudioUnitManufacturer="" pluginAndroidPackageName="" 
+              pluginAndroidVersionCode="1" pluginAndroidVersionName="1.0.0" 
+              pluginAndroidMinSDK="21" pluginAndroidTargetSDK="33" 
+              pluginAndroidPermissions="" pluginAndroidFeatures="" 
+              pluginAndroidExported="0" pluginAndroidAppBundle="0" 
+              pluginAndroidUseVST3="0" pluginAndroidUseAAudio="0" 
+              pluginAndroidUseOboe="0" pluginLinuxVST3="1" pluginLinuxLV2="0"
+              pluginLinuxALSA="0" pluginLinuxJACK="0" pluginLinuxPA="0" 
+              useGlobalJuceHeader="1" globalJuceHeaderPath="JuceHeader.h" 
+              juceModuleFlags="juce_audio_basics=1,juce_audio_devices=1,juce_audio_formats=1,juce_audio_processors=1,juce_audio_utils=1,juce_core=1,juce_cryptography=1,juce_data_structures=1,juce_events=1,juce_graphics=1,juce_gui_basics=1,juce_gui_extra=1,juce_opengl=1,juce_video=1"
+              juceModuleList="juce_audio_basics,juce_audio_devices,juce_audio_formats,juce_audio_processors,juce_audio_utils,juce_core,juce_cryptography,juce_data_structures,juce_events,juce_graphics,juce_gui_basics,juce_gui_extra,juce_opengl,juce_video" 
+              searchPathsForModules="JUCE/modules"
+              headerSearchPaths="Source;Source/Core;Source/Core/Oscillators;Source/Core/Envelopes;Source/Core/Filters;Source/Core/Distortion;Source/Core/Effects;Source/Core/Mixer;Source/Core/Routing;Source/Core/Presets;Source/Core/DSP;Source/UI;Source/UI/Components"
+              >
+
+  <EXPORTFORMATS>
+    <VST3/>
+    <AU/>
+    <AAX/>
+  </EXPORTFORMATS>
+
+  <CONFIGURATIONS>
+    <DEBUG/>
+    <RELEASE/>
+  </CONFIGURATIONS>
+
+  <MODULES>
+    <MODULE id="juce_audio_basics" path="JUCE/modules/juce_audio_basics" compile="1" link="1"/>
+    <MODULE id="juce_audio_devices" path="JUCE/modules/juce_audio_devices" compile="1" link="1"/>
+    <MODULE id="juce_audio_formats" path="JUCE/modules/juce_audio_formats" compile="1" link="1"/>
+    <MODULE id="juce_audio_processors" path="JUCE/modules/juce_audio_processors" compile="1" link="1"/>
+    <MODULE id="juce_audio_utils" path="JUCE/modules/juce_audio_utils" compile="1" link="1"/>
+    <MODULE id="juce_core" path="JUCE/modules/juce_core" compile="1" link="1"/>
+    <MODULE id="juce_cryptography" path="JUCE/modules/juce_cryptography" compile="1" link="1"/>
+    <MODULE id="juce_data_structures" path="JUCE/modules/juce_data_structures" compile="1" link="1"/>
+    <MODULE id="juce_events" path="JUCE/modules/juce_events" compile="1" link="1"/>
+    <MODULE id="juce_graphics" path="JUCE/modules/juce_graphics" compile="1" link="1"/>
+    <MODULE id="juce_gui_basics" path="JUCE/modules/juce_gui_basics" compile="1" link="1"/>
+    <MODULE id="juce_gui_extra" path="JUCE/modules/juce_gui_extra" compile="1" link="1"/>
+  </MODULES>
+
+  <SOURCE>
+    <FILE type="cpp" name="Source/PluginProcessor.cpp" compile="1" ID="AB345678901234567890123456789012"/>
+    <FILE type="h" name="Source/PluginProcessor.h" compile="0" ID="12345678901234567890123456789012"/>
+    <FILE type="cpp" name="Source/PluginEditor.cpp" compile="1" ID="CD345678901234567890123456789012"/>
+    <FILE type="h" name="Source/PluginEditor.h" compile="0" ID="2345678901234567890123456789012"/>
+    
+    <!-- Core -->
+    <FILE type="cpp" name="Source/Core/AudioEngine.cpp" compile="1" ID="EF345678901234567890123456789012"/>
+    <FILE type="h" name="Source/Core/AudioEngine.h" compile="0" ID="345678901234567890123456789012"/>
+    
+    <!-- Oscillators -->
+    <FILE type="cpp" name="Source/Core/Oscillators/Oscillator.cpp" compile="1" ID="4567890123456789012345678901234"/>
+    <FILE type="h" name="Source/Core/Oscillators/Oscillator.h" compile="0" ID="5678901234567890123456789012345"/>
+    <FILE type="cpp" name="Source/Core/Oscillators/Oscillator1.cpp" compile="1" ID="6789012345678901234567890123456"/>
+    <FILE type="h" name="Source/Core/Oscillators/Oscillator1.h" compile="0" ID="7890123456789012345678901234567"/>
+    <FILE type="cpp" name="Source/Core/Oscillators/Oscillator2.cpp" compile="1" ID="8901234567890123456789012345678"/>
+    <FILE type="h" name="Source/Core/Oscillators/Oscillator2.h" compile="0" ID="9012345678901234567890123456789"/>
+    <FILE type="cpp" name="Source/Core/Oscillators/NoiseRumble.cpp" compile="1" ID="0123456789012345678901234567890"/>
+    <FILE type="h" name="Source/Core/Oscillators/NoiseRumble.h" compile="0" ID="1123456789012345678901234567890"/>
+    <FILE type="cpp" name="Source/Core/Oscillators/Sampler.cpp" compile="1" ID="2123456789012345678901234567890"/>
+    <FILE type="h" name="Source/Core/Oscillators/Sampler.h" compile="0" ID="3123456789012345678901234567890"/>
+    <FILE type="cpp" name="Source/Core/Oscillators/SubGenerator.cpp" compile="1" ID="4123456789012345678901234567890"/>
+    <FILE type="h" name="Source/Core/Oscillators/SubGenerator.h" compile="0" ID="5123456789012345678901234567890"/>
+    
+    <!-- Envelopes -->
+    <FILE type="cpp" name="Source/Core/Envelopes/ADSR.cpp" compile="1" ID="6123456789012345678901234567890"/>
+    <FILE type="h" name="Source/Core/Envelopes/ADSR.h" compile="0" ID="7123456789012345678901234567890"/>
+    
+    <!-- Mixer -->
+    <FILE type="cpp" name="Source/Core/Mixer/Mixer.cpp" compile="1" ID="8123456789012345678901234567890"/>
+    <FILE type="h" name="Source/Core/Mixer/Mixer.h" compile="0" ID="9123456789012345678901234567890"/>
+    
+    <!-- Filters -->
+    <FILE type="cpp" name="Source/Core/Filters/Filter.cpp" compile="1" ID="0223456789012345678901234567890"/>
+    <FILE type="h" name="Source/Core/Filters/Filter.h" compile="0" ID="1223456789012345678901234567890"/>
+    <FILE type="cpp" name="Source/Core/Filters/StandardFilter.cpp" compile="1" ID="2223456789012345678901234567890"/>
+    <FILE type="h" name="Source/Core/Filters/StandardFilter.h" compile="0" ID="3223456789012345678901234567890"/>
+    <FILE type="cpp" name="Source/Core/Filters/StateVariableFilter.cpp" compile="1" ID="4223456789012345678901234567890"/>
+    <FILE type="h" name="Source/Core/Filters/StateVariableFilter.h" compile="0" ID="5223456789012345678901234567890"/>
+    <FILE type="cpp" name="Source/Core/Filters/FilterBank.cpp" compile="1" ID="6223456789012345678901234567890"/>
+    <FILE type="h" name="Source/Core/Filters/FilterBank.h" compile="0" ID="7223456789012345678901234567890"/>
+    
+    <!-- Distortion -->
+    <FILE type="cpp" name="Source/Core/Distortion/DistortionAlgorithm.cpp" compile="1" ID="8223456789012345678901234567890"/>
+    <FILE type="h" name="Source/Core/Distortion/DistortionAlgorithm.h" compile="0" ID="9223456789012345678901234567890"/>
+    <FILE type="cpp" name="Source/Core/Distortion/DistortionUnit.cpp" compile="1" ID="0323456789012345678901234567890"/>
+    <FILE type="h" name="Source/Core/Distortion/DistortionUnit.h" compile="0" ID="1323456789012345678901234567890"/>
+    <FILE type="cpp" name="Source/Core/Distortion/SoftClip.cpp" compile="1" ID="2323456789012345678901234567890"/>
+    <FILE type="h" name="Source/Core/Distortion/SoftClip.h" compile="0" ID="3323456789012345678901234567890"/>
+    <FILE type="cpp" name="Source/Core/Distortion/HardClip.cpp" compile="1" ID="4323456789012345678901234567890"/>
+    <FILE type="h" name="Source/Core/Distortion/HardClip.h" compile="0" ID="5323456789012345678901234567890"/>
+    <FILE type="cpp" name="Source/Core/Distortion/Chebyshev.cpp" compile="1" ID="6323456789012345678901234567890"/>
+    <FILE type="h" name="Source/Core/Distortion/Chebyshev.h" compile="0" ID="7323456789012345678901234567890"/>
+    <FILE type="cpp" name="Source/Core/Distortion/Bitcrush.cpp" compile="1" ID="8323456789012345678901234567890"/>
+    <FILE type="h" name="Source/Core/Distortion/Bitcrush.h" compile="0" ID="9323456789012345678901234567890"/>
+    <FILE type="cpp" name="Source/Core/Distortion/Tape.cpp" compile="1" ID="0423456789012345678901234567890"/>
+    <FILE type="h" name="Source/Core/Distortion/Tape.h" compile="0" ID="1423456789012345678901234567890"/>
+    <FILE type="cpp" name="Source/Core/Distortion/Foldback.cpp" compile="1" ID="2423456789012345678901234567890"/>
+    <FILE type="h" name="Source/Core/Distortion/Foldback.h" compile="0" ID="3423456789012345678901234567890"/>
+    
+    <!-- Effects -->
+    <FILE type="cpp" name="Source/Core/Effects/Compressor.cpp" compile="1" ID="4423456789012345678901234567890"/>
+    <FILE type="h" name="Source/Core/Effects/Compressor.h" compile="0" ID="5423456789012345678901234567890"/>
+    <FILE type="cpp" name="Source/Core/Effects/ParametricEQ.cpp" compile="1" ID="6423456789012345678901234567890"/>
+    <FILE type="h" name="Source/Core/Effects/ParametricEQ.h" compile="0" ID="7423456789012345678901234567890"/>
+    <FILE type="cpp" name="Source/Core/Effects/Reverb.cpp" compile="1" ID="8423456789012345678901234567890"/>
+    <FILE type="h" name="Source/Core/Effects/Reverb.h" compile="0" ID="9423456789012345678901234567890"/>
+    <FILE type="cpp" name="Source/Core/Effects/Delay.cpp" compile="1" ID="0523456789012345678901234567890"/>
+    <FILE type="h" name="Source/Core/Effects/Delay.h" compile="0" ID="1523456789012345678901234567890"/>
+    <FILE type="cpp" name="Source/Core/Effects/StereoImager.cpp" compile="1" ID="2523456789012345678901234567890"/>
+    <FILE type="h" name="Source/Core/Effects/StereoImager.h" compile="0" ID="3523456789012345678901234567890"/>
+    
+    <!-- Routing -->
+    <FILE type="cpp" name="Source/Core/Routing/RoutingMatrix.cpp" compile="1" ID="4523456789012345678901234567890"/>
+    <FILE type="h" name="Source/Core/Routing/RoutingMatrix.h" compile="0" ID="5523456789012345678901234567890"/>
+    
+    <!-- Presets -->
+    <FILE type="cpp" name="Source/Core/Presets/PresetManager.cpp" compile="1" ID="6523456789012345678901234567890"/>
+    <FILE type="h" name="Source/Core/Presets/PresetManager.h" compile="0" ID="7523456789012345678901234567890"/>
+    
+    <!-- DSP -->
+    <FILE type="cpp" name="Source/Core/DSP/Oversampling.cpp" compile="1" ID="8523456789012345678901234567890"/>
+    <FILE type="h" name="Source/Core/DSP/Oversampling.h" compile="0" ID="9523456789012345678901234567890"/>
+    <FILE type="cpp" name="Source/Core/DSP/SimdUtils.cpp" compile="1" ID="0623456789012345678901234567890"/>
+    <FILE type="h" name="Source/Core/DSP/SimdUtils.h" compile="0" ID="1623456789012345678901234567890"/>
+    <FILE type="cpp" name="Source/Core/DSP/DCBlocker.cpp" compile="1" ID="2623456789012345678901234567890"/>
+    <FILE type="h" name="Source/Core/DSP/DCBlocker.h" compile="0" ID="3623456789012345678901234567890"/>
+    <FILE type="cpp" name="Source/Core/DSP/BLIT.cpp" compile="1" ID="4623456789012345678901234567890"/>
+    <FILE type="h" name="Source/Core/DSP/BLIT.h" compile="0" ID="5623456789012345678901234567890"/>
+    <FILE type="cpp" name="Source/Core/DSP/GainStaging.cpp" compile="1" ID="6623456789012345678901234567890"/>
+    <FILE type="h" name="Source/Core/DSP/GainStaging.h" compile="0" ID="7623456789012345678901234567890"/>
+    <FILE type="cpp" name="Source/Core/DSP/LatencyCompensator.cpp" compile="1" ID="8623456789012345678901234567890"/>
+    <FILE type="h" name="Source/Core/DSP/LatencyCompensator.h" compile="0" ID="9623456789012345678901234567890"/>
+    <FILE type="cpp" name="Source/Core/DSP/PerformanceMonitor.cpp" compile="1" ID="0723456789012345678901234567890"/>
+    <FILE type="h" name="Source/Core/DSP/PerformanceMonitor.h" compile="0" ID="1723456789012345678901234567890"/>
+    
+    <!-- UI -->
+    <FILE type="cpp" name="Source/UI/MainWindow.cpp" compile="1" ID="2723456789012345678901234567890"/>
+    <FILE type="h" name="Source/UI/MainWindow.h" compile="0" ID="3723456789012345678901234567890"/>
+    <FILE type="cpp" name="Source/UI/Components/Oscilloscope.cpp" compile="1" ID="4723456789012345678901234567890"/>
+    <FILE type="h" name="Source/UI/Components/Oscilloscope.h" compile="0" ID="5723456789012345678901234567890"/>
+    <FILE type="cpp" name="Source/UI/Components/SpectrumAnalyzer.cpp" compile="1" ID="6723456789012345678901234567890"/>
+    <FILE type="h" name="Source/UI/Components/SpectrumAnalyzer.h" compile="0" ID="7723456789012345678901234567890"/>
+    <FILE type="cpp" name="Source/UI/Components/ADSREditor.cpp" compile="1" ID="8723456789012345678901234567890"/>
+    <FILE type="h" name="Source/UI/Components/ADSREditor.h" compile="0" ID="9723456789012345678901234567890"/>
+  </SOURCE>
+
+  <EXPORTFORMATS>
+    <VST3
+        folderName="HardeKickSynth_VST3" 
+        binaryName="HardeKickSynth" 
+        productName="Harde Kick Synth" 
+        pluginID="HrdK" 
+        manufacturerCode="Selim"
+        version="1.0.0"
+        sampleAccurateProcessing="1"
+        silentBypass="0"
+        sideChain="0"
+        />
+    <AU
+        folderName="HardeKickSynth.au" 
+        binaryName="HardeKickSynth" 
+        productName="Harde Kick Synth" 
+        pluginID="HrdK" 
+        manufacturerCode="Selm"
+        version="1.0.0"
+        />
+    <AAX
+        folderName="HardeKickSynth.aaxplugin" 
+        binaryName="HardeKickSynth" 
+        productName="Harde Kick Synth" 
+        pluginID="HrdK" 
+        manufacturerID="Selim"
+        version="1.0.0"
+        category="AAX_ePlugInCategory_Synth"
+        />
+  </EXPORTFORMATS>
+
+  <CONFIGURATIONS>
+    <DEBUG
+        debugSymbols="1" 
+        optimisation="0" 
+        useDebugHeaps="0" 
+        runtimeLibrary="MultiThreadedDebugDLL" 
+        characterSet="Unicode" 
+        treatWarningsAsErrors="0" 
+        warnings="Extra" 
+        linkTimeOptimisation="0" 
+        wholeProgramOptimisation="0"
+        />
+    <RELEASE
+        debugSymbols="0" 
+        optimisation="3" 
+        useDebugHeaps="0" 
+        runtimeLibrary="MultiThreadedDLL" 
+        characterSet="Unicode" 
+        treatWarningsAsErrors="0" 
+        warnings="Extra" 
+        linkTimeOptimisation="0" 
+        wholeProgramOptimisation="0"
+        />
+  </CONFIGURATIONS>
+
+</JUCERPROJECT>
