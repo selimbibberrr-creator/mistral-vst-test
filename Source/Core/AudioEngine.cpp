@@ -30,11 +30,19 @@ void AudioEngine::prepareToPlay(double newSampleRate, int newBlockSize)
     distortionUnit.prepareToPlay(sampleRate, blockSize);
     compressor.prepareToPlay(sampleRate, blockSize);
     parametricEQ.prepareToPlay(sampleRate, blockSize);
+    reverb.prepareToPlay(sampleRate, blockSize);
+    delay.prepareToPlay(sampleRate, blockSize);
+    stereoImager.prepareToPlay(sampleRate, blockSize);
     routingMatrix.prepareToPlay(sampleRate, blockSize);
 
     // Initialize temporary buffers
     tempBuffer.setSize(2, blockSize);
     mixerBuffer.setSize(2, blockSize);
+    
+    for (int i = 0; i < 5; ++i)
+    {
+        sourceBuffers[i].setSize(2, blockSize);
+    }
 }
 
 void AudioEngine::releaseResources()
@@ -49,6 +57,9 @@ void AudioEngine::releaseResources()
     distortionUnit.releaseResources();
     compressor.releaseResources();
     parametricEQ.releaseResources();
+    reverb.releaseResources();
+    delay.releaseResources();
+    stereoImager.releaseResources();
     routingMatrix.releaseResources();
 }
 
@@ -57,31 +68,55 @@ void AudioEngine::processBlock(juce::AudioBuffer<float>& buffer)
     // Clear output buffer
     buffer.clear();
 
-    // Process each sound source
-    oscillator1.processBlock(tempBuffer, adsrOsc1);
-    oscillator2.processBlock(tempBuffer, adsrOsc2);
-    noiseRumble.processBlock(tempBuffer, adsrNoise);
-    sampler.processBlock(tempBuffer, adsrSampler);
-    subGenerator.processBlock(tempBuffer, adsrSub);
+    // Process each sound source into individual buffers
+    oscillator1.processBlock(sourceBuffers[0], adsrOsc1);
+    oscillator2.processBlock(sourceBuffers[1], adsrOsc2);
+    noiseRumble.processBlock(sourceBuffers[2], adsrNoise);
+    sampler.processBlock(sourceBuffers[3], adsrSampler);
+    subGenerator.processBlock(sourceBuffers[4], adsrSub);
 
-    // Mix all sources (simplified for now - will be replaced by proper mixer)
-    for (int channel = 0; channel < buffer.getNumChannels(); ++channel)
+    // Mix all sources (simplified - will be replaced by proper mixer)
+    mixerBuffer.clear();
+    for (int i = 0; i < 5; ++i)
     {
-        for (int sample = 0; sample < buffer.getNumSamples(); ++sample)
+        for (int channel = 0; channel < 2; ++channel)
         {
-            // Sum all sources (this is a placeholder)
-            float mixedSample = 0.0f;
-            // In a real implementation, we would mix from individual buffers
-            buffer.addSample(channel, sample, mixedSample * 0.2f); // Scale down for safety
+            auto* sourceData = sourceBuffers[i].getReadPointer(channel);
+            auto* mixData = mixerBuffer.getWritePointer(channel);
+            
+            for (int sample = 0; sample < blockSize; ++sample)
+            {
+                mixData[sample] += sourceData[sample] * 0.2f; // Scale down for safety
+            }
         }
     }
 
     // Apply processing chain: Mixer -> FilterBank -> Distortion -> Effects
-    // For now, just pass through (will be implemented in later phases)
-    filterBank.processBlock(buffer);
-    distortionUnit.processBlock(buffer);
-    compressor.processBlock(buffer);
-    parametricEQ.processBlock(buffer);
+    // For now, just pass through the mixer buffer
+    
+    // Apply filter bank
+    filterBank.processBlock(mixerBuffer);
+    
+    // Apply distortion
+    distortionUnit.processBlock(mixerBuffer);
+    
+    // Apply compressor
+    compressor.processBlock(mixerBuffer);
+    
+    // Apply EQ
+    parametricEQ.processBlock(mixerBuffer);
+    
+    // Apply reverb
+    reverb.processBlock(mixerBuffer);
+    
+    // Apply delay
+    delay.processBlock(mixerBuffer);
+    
+    // Apply stereo imager
+    stereoImager.processBlock(mixerBuffer);
+    
+    // Copy to output
+    buffer.makeCopyOf(mixerBuffer);
 }
 
 void AudioEngine::processMidiMessage(const juce::MidiMessage& message)
@@ -100,6 +135,7 @@ void AudioEngine::processMidiMessage(const juce::MidiMessage& message)
         oscillator2.noteOn(message.getNoteNumber(), message.getVelocity());
         subGenerator.noteOn(message.getNoteNumber(), message.getVelocity());
         sampler.noteOn(message.getNoteNumber(), message.getVelocity());
+        noiseRumble.noteOn(message.getNoteNumber(), message.getVelocity());
     }
     else if (message.isNoteOff())
     {
@@ -115,6 +151,7 @@ void AudioEngine::processMidiMessage(const juce::MidiMessage& message)
         oscillator2.noteOff();
         subGenerator.noteOff();
         sampler.noteOff();
+        noiseRumble.noteOff();
     }
     else if (message.isPitchWheel())
     {
@@ -157,8 +194,33 @@ void AudioEngine::saveState(juce::ValueTree& state)
     auto eqState = state.getOrCreateChildWithName("ParametricEQ", nullptr);
     parametricEQ.saveState(eqState);
 
+    auto reverbState = state.getOrCreateChildWithName("Reverb", nullptr);
+    reverb.saveState(reverbState);
+
+    auto delayState = state.getOrCreateChildWithName("Delay", nullptr);
+    delay.saveState(delayState);
+
+    auto stereoState = state.getOrCreateChildWithName("StereoImager", nullptr);
+    stereoImager.saveState(stereoState);
+
     auto routingState = state.getOrCreateChildWithName("RoutingMatrix", nullptr);
     routingMatrix.saveState(routingState);
+
+    // Save ADSR states
+    auto adsrOsc1State = state.getOrCreateChildWithName("ADSR_Osc1", nullptr);
+    adsrOsc1.saveState(adsrOsc1State);
+
+    auto adsrOsc2State = state.getOrCreateChildWithName("ADSR_Osc2", nullptr);
+    adsrOsc2.saveState(adsrOsc2State);
+
+    auto adsrNoiseState = state.getOrCreateChildWithName("ADSR_Noise", nullptr);
+    adsrNoise.saveState(adsrNoiseState);
+
+    auto adsrSamplerState = state.getOrCreateChildWithName("ADSR_Sampler", nullptr);
+    adsrSampler.saveState(adsrSamplerState);
+
+    auto adsrSubState = state.getOrCreateChildWithName("ADSR_Sub", nullptr);
+    adsrSub.saveState(adsrSubState);
 }
 
 void AudioEngine::loadState(const juce::ValueTree& state)
@@ -191,6 +253,31 @@ void AudioEngine::loadState(const juce::ValueTree& state)
     if (auto eqState = state.getChildWithName("ParametricEQ"))
         parametricEQ.loadState(*eqState);
 
+    if (auto reverbState = state.getChildWithName("Reverb"))
+        reverb.loadState(*reverbState);
+
+    if (auto delayState = state.getChildWithName("Delay"))
+        delay.loadState(*delayState);
+
+    if (auto stereoState = state.getChildWithName("StereoImager"))
+        stereoImager.loadState(*stereoState);
+
     if (auto routingState = state.getChildWithName("RoutingMatrix"))
         routingMatrix.loadState(*routingState);
+
+    // Load ADSR states
+    if (auto adsrOsc1State = state.getChildWithName("ADSR_Osc1"))
+        adsrOsc1.loadState(*adsrOsc1State);
+
+    if (auto adsrOsc2State = state.getChildWithName("ADSR_Osc2"))
+        adsrOsc2.loadState(*adsrOsc2State);
+
+    if (auto adsrNoiseState = state.getChildWithName("ADSR_Noise"))
+        adsrNoise.loadState(*adsrNoiseState);
+
+    if (auto adsrSamplerState = state.getChildWithName("ADSR_Sampler"))
+        adsrSampler.loadState(*adsrSamplerState);
+
+    if (auto adsrSubState = state.getChildWithName("ADSR_Sub"))
+        adsrSub.loadState(*adsrSubState);
 }

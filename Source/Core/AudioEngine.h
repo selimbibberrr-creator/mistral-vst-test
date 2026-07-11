@@ -11,6 +11,9 @@
 #include "Distortion/DistortionUnit.h"
 #include "Effects/Compressor.h"
 #include "Effects/ParametricEQ.h"
+#include "Effects/Reverb.h"
+#include "Effects/Delay.h"
+#include "Effects/StereoImager.h"
 #include "Routing/RoutingMatrix.h"
 
 class AudioEngine
@@ -41,6 +44,9 @@ public:
     DistortionUnit& getDistortionUnit() { return distortionUnit; }
     Compressor& getCompressor() { return compressor; }
     ParametricEQ& getParametricEQ() { return parametricEQ; }
+    Reverb& getReverb() { return reverb; }
+    Delay& getDelay() { return delay; }
+    StereoImager& getStereoImager() { return stereoImager; }
     RoutingMatrix& getRoutingMatrix() { return routingMatrix; }
 
 private:
@@ -67,11 +73,15 @@ private:
     DistortionUnit distortionUnit;
     Compressor compressor;
     ParametricEQ parametricEQ;
+    Reverb reverb;
+    Delay delay;
+    StereoImager stereoImager;
     RoutingMatrix routingMatrix;
 
     // Temporary buffers for processing
     juce::AudioBuffer<float> tempBuffer;
     juce::AudioBuffer<float> mixerBuffer;
+    juce::AudioBuffer<float> sourceBuffers[5]; // Individual source buffers
 
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(AudioEngine)
 };
